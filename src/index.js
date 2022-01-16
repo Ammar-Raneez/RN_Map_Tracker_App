@@ -1,6 +1,6 @@
 const express = require('express');
-const authRouter = require('./routes/auth');
 require('./models/User');
+const authRouter = require('./routes/auth');
 require('./utils/database');
 
 const app = express();
