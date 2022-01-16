@@ -1,7 +1,8 @@
 const express = require('express');
 require('./models/User');
-const authRouter = require('./routes/auth');
 require('./utils/database');
+const authRouter = require('./routes/auth');
+const requireAuth = require('./middlewares/requireAuth');
 
 const app = express();
 
@@ -9,8 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(authRouter);
 
-app.get('/', (req, res) => {
-  res.send('Hi there!');
+app.get('/', requireAuth, (req, res) => {
+  res.send(`Your email: ${req.user.email}`);
 });
 
 app.listen(3000, () => console.log('Listening on port 3000'));
