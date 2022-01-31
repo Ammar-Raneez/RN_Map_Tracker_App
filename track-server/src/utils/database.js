@@ -12,5 +12,5 @@ mongoose.connection.on('connected', () => {
 });
 
 mongoose.connection.on('error', (err) => {
-  console.err('Error Connecting to mongo instance', err);
+  console.error('Error Connecting to mongo instance', err);
 });
