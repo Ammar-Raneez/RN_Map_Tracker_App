@@ -21,10 +21,12 @@ const Map = () => {
   return (
     <MapView
       style={styles.map}
-      initialRegion={{
-        ...initialLocation,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+      initialCamera={{
+        pitch: 0,
+        heading: 0,
+        altitude: 1000,
+        zoom: 18,
+        center: initialLocation,
       }}
     >
       <Circle

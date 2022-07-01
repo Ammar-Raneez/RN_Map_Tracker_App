@@ -16,10 +16,15 @@ const TrackDetailScreen = () => {
     <>
       <Text style={{ fontSize: 48 }}>{track.name}</Text>
       <MapView
-        initialRegion={{
-          longitudeDelta: 0.01,
-          latitudeDelta: 0.01,
-          ...initialCoords
+        initialCamera={{
+          pitch: 0,
+          heading: 0,
+          altitude: 1000,
+          zoom: 18,
+          center: {
+            latitude: initialCoords.latitude,
+            longitude: initialCoords.longitude,
+          },
         }}
         style={styles.map}
       >

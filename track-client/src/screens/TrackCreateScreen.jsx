@@ -29,7 +29,7 @@ const TrackCreateScreen = () => {
   return (
     <SafeAreaView forceInset={{ top: 'always' }}>
       <Text h2>Create a Track</Text>
-      {/* <Map /> */}
+      <Map />
       {err ? <Text>Please enable location services</Text> : null}
       <TrackForm />
     </SafeAreaView>
