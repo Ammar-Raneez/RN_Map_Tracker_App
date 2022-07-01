@@ -2,27 +2,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import AccountScreen from './screens/AccountScreen';
-import SigninScreen from './screens/SigninScreen';
-import SignupScreen from './screens/SignupScreen';
-import TrackCreateScreen from './screens/TrackCreateScreen';
-import TrackDetailScreen from './screens/TrackDetailScreen';
-import TrackListScreen from './screens/TrackListScreen';
-import { Provider as AuthProvider } from './context/AuthContext';
+import AccountScreen from './src/screens/AccountScreen';
+import SigninScreen from './src/screens/SigninScreen';
+import SignupScreen from './src/screens/SignupScreen';
+import TrackCreateScreen from './src/screens/TrackCreateScreen';
+import TrackDetailScreen from './src/screens/TrackDetailScreen';
+import TrackListScreen from './src/screens/TrackListScreen';
+import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as LocationProvider } from './src/context/LocationContext';
+import { Provider as TrackProvider } from './src/context/TrackContext';
 
-export type RootStackParamList = {
-  Account: any;
-  Home: any;
-  Signin: any;
-  Signup: any;
-  TrackCreate: any;
-  TrackDetail: any;
-  TrackList: any;
-  InnerStack: any;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const InnerStack = () => {
   return (
@@ -77,10 +68,14 @@ const StackNavigator = () => {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
-    </AuthProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <NavigationContainer>
+            <StackNavigator />
+          </NavigationContainer>
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 }
