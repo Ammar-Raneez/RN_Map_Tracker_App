@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 require('./models/User');
 require('./models/Track');
 require('./utils/database');
@@ -7,6 +8,8 @@ const trackRouter = require('./routes/track');
 const requireAuth = require('./middlewares/requireAuth');
 
 const app = express();
+
+app.use(cors());
 
 // parse the data before sending to routes
 app.use(express.json());
