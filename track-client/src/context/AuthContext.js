@@ -38,7 +38,6 @@ const signup = (dispatch) => async ({ email, password }) => {
     const response = await trackerApi.post('/signup', { email, password });
     await AsyncStorage.setItem('token', response.data.token);
     dispatch({ type: 'signin', payload: response.data.token });
-
     navigate('TrackList');
   } catch (err) {
     dispatch({
@@ -53,7 +52,7 @@ const signin = (dispatch) => async ({ email, password }) => {
     const response = await trackerApi.post('/signin', { email, password });
     await AsyncStorage.setItem('token', response.data.token);
     dispatch({ type: 'signin', payload: response.data.token });
-    navigate('TrackList');
+    navigate('Home');
   } catch (err) {
     dispatch({
       type: 'add_error',
