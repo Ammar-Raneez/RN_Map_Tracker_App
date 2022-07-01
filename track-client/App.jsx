@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { FontAwesome } from '@expo/vector-icons';
 
 import AccountScreen from './src/screens/AccountScreen';
 import SigninScreen from './src/screens/SigninScreen';
@@ -19,25 +20,72 @@ const Tab = createBottomTabNavigator();
 const InnerStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='TrackList' component={TrackListScreen} />
-      <Stack.Screen name='TrackDetail' component={TrackDetailScreen} />
+      <Stack.Screen
+        name='TrackList'
+        component={TrackListScreen}
+        options={{
+          headerTitle: 'Tracks',
+          title: 'Tracks',
+        }}
+      />
+      <Stack.Screen
+        name='TrackDetail'
+        component={TrackDetailScreen}
+        options={{
+          headerTitle: 'Track Detail',
+          title: 'Track Detail',
+        }}
+      />
     </Stack.Navigator>
   );
 }
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: () => {
+          let icon;
+          if (route.name === 'Account') {
+            icon = <FontAwesome name="gear" size={20} />;
+          } else if (route.name === 'TrackCreate') {
+            icon = <FontAwesome name="plus" size={20} />;
+          } else if (route.name === 'InnerStack') {
+            icon = <FontAwesome name="th-list" size={20} />;
+          }
+
+          return icon;
+        }
+      })}
+    >
       <Stack.Group>
         <Stack.Screen
           name='InnerStack'
           component={InnerStack}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            headerTitle: 'Home',
+            title: 'Home',
+          }}
         />
       </Stack.Group>
       <Stack.Group>
-        <Stack.Screen name='TrackCreate' component={TrackCreateScreen} />
-        <Stack.Screen name='Account' component={AccountScreen} />
+        <Stack.Screen
+          name='TrackCreate'
+          component={TrackCreateScreen}
+          options={{
+            headerTitle: 'Add Track',
+            title: 'Add Track',
+          }}
+        />
+        <Stack.Screen
+          name='Account'
+          component={AccountScreen}
+          options={{
+            headerShown: false,
+            headerTitle: 'Account',
+          }}
+        />
       </Stack.Group>
     </Tab.Navigator>
   );

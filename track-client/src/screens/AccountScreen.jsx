@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome } from '@expo/vector-icons';
 
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -19,10 +18,5 @@ const AccountScreen = () => {
     </SafeAreaView>
   );
 }
-
-AccountScreen.navigationOptions = {
-  title: 'Account',
-  tabBarIcon: <FontAwesome name="gear" size={20} />
-};
 
 export default AccountScreen;

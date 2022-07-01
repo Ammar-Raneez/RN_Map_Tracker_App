@@ -42,8 +42,4 @@ const TrackListScreen = () => {
   );
 };
 
-TrackListScreen.navigationOptions = {
-  title: 'Tracks',
-};
-
 export default TrackListScreen;
